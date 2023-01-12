@@ -30,11 +30,12 @@ class _ProductSliderState extends State<ProductSlider>
   void initState() {
     super.initState();
 
-    _pageController = PageController(viewportFraction: 0.7,);
+    _pageController = PageController(
+      viewportFraction: 0.7,
+    );
 
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
-
 
     animationCard = Tween(begin: 1, end: 0.001).animate(_controller);
 
@@ -49,64 +50,46 @@ class _ProductSliderState extends State<ProductSlider>
   Widget build(BuildContext context) {
     return SizedBox(
       height: CardConstants.height,
-      child: PageView.builder(
-        
-          onPageChanged: (val) {
-            // _controller.animateTo(0.001);
-            // setState(() {
-            //   x = animationCard.value;
-            // });
-          },
-          itemCount: PRODUCTS.length,
-          controller: _pageController,
-        //  pageSnapping: true,
-          itemBuilder: ((context, position) {
-
-            print(position);
-            print(_currentPageValue.floor());
-            if (position == _currentPageValue.floor()) {
-             
-              return TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.005, end: 0.0),
-                  duration: const Duration(milliseconds: 300),
-                  builder: (BuildContext context,double size, Widget? child) {
-                    return Transform(
-                      transform: Matrix4(
-                          1, 0, 0, size, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-                        ..rotateX(size)
-                        ..rotateY(y)
-                        ..rotateZ(z),
-                      alignment: FractionalOffset.center,
-                      child: _cardItem(position),
-                    );
-                  });
-            } else if (position == _currentPageValue.floor() + 1) {
-              return TweenAnimationBuilder(
-                  tween: Tween<double>(begin: -0.005, end: 0.0),
-                  duration: const Duration(milliseconds: 300),
-                  builder: (BuildContext context,double size, Widget? child) {
-                    return Transform(
-                      transform: Matrix4(
-                          1, 0, 0, size, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-                        ..rotateX(size)
-                        ..rotateY(y)
-                        ..rotateZ(z),
-                      alignment: FractionalOffset.center,
-                      child: _cardItem(position),
-                    );
-                  });
-            } else {
-                
-              return _cardItem(position);
-            }
-          })),
+      child: Stack(alignment: Alignment.center, children: [
+        Positioned(
+            left: 5,
+            child: Container(
+              width: 50,
+              padding: EdgeInsets.all(8.0),
+              color: Colors.orange,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: Text('sample'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Text('sample'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Text('sample'),
+                      ),
+                    ),
+                  ]),
+            ))
+      ]),
     );
   }
 
   Widget _cardItem(int index) {
-    double x= 0;
     return Stack(alignment: Alignment.center, children: [
-     Container(
+      Container(
         width: CardConstants.width,
         height: CardConstants.height,
         padding: EdgeInsets.all(8.0),
@@ -117,7 +100,6 @@ class _ProductSliderState extends State<ProductSlider>
               borderRadius: BorderRadius.circular(CardConstants.borderRadius)),
         ),
       ),
-         
       Container(
         width: CardConstants.width,
         child: PRODUCTS[index].image != null
@@ -132,7 +114,7 @@ class _ProductSliderState extends State<ProductSlider>
 }
 
 class CardConstants {
-  static const height = 250.0;
-  static const width = 210.0;
+  static const height = 300.0;
+  static const width = 220.0;
   static const borderRadius = 15.0;
 }

@@ -13,13 +13,35 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body:
-      false ? MyTransition() :
-       Column(children: [
-        BrandsTabBar(),
-        ProductSlider(),
-        
-      ]),
+      backgroundColor: Colors.grey[100],
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.grey[300],
+        ),
+        child: BottomNavigationBar(
+            fixedColor: Colors.red,
+            showSelectedLabels: false,
+            elevation: 0,
+            items: const [
+              BottomNavigationBarItem(
+                  label: 'Home', icon: Icon(Icons.home_outlined)),
+              BottomNavigationBarItem(
+                  label: 'Favorite', icon: Icon(Icons.favorite_outline)),
+              BottomNavigationBarItem(
+                  label: 'Location', icon: Icon(Icons.home_work_outlined)),
+              BottomNavigationBarItem(
+                  label: 'Shopping Card',
+                  icon: Icon(Icons.shopping_cart_outlined)),
+              BottomNavigationBarItem(
+                  label: 'Profile', icon: Icon(Icons.person)),
+            ]),
+      ),
+      body: false
+          ? MyTransition()
+          : Column(children: [
+              BrandsTabBar(),
+              ProductSlider(),
+            ]),
     );
   }
 
