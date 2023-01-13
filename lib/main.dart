@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kyle_test_app/ui/home/home_page.dart';
+import 'package:kyle_test_app/ui/product_detail.dart';
 import 'package:kyle_test_app/ui/transition.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 32, color: Colors.black, fontWeight: FontWeight.bold),
             actionsIconTheme: IconThemeData(color: Colors.black)),
       ),
+    
       home: const MyHomePage(),
     );
   }

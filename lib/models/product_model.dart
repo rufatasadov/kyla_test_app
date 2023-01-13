@@ -7,6 +7,9 @@ class ProductModel {
   bool isFavorite;
   String? image;
   Color? bkColor;
+  String? category;
+  List<int> gallery; 
+  String? description;
 
   ProductModel(
       {required this.name,
@@ -14,5 +17,10 @@ class ProductModel {
       required this.price,
       this.isFavorite = false,
       this.image,
-      this.bkColor = Colors.lightGreen});
+      this.bkColor = Colors.lightGreen,
+      this.category = 'NEW',
+      this.gallery = const [1,2,3,4],
+      this.description
+      });
 }
+
