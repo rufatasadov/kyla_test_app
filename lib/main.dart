@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:kyle_test_app/provider/my_bag_provider.dart';
 import 'package:kyle_test_app/ui/home/home_page.dart';
+import 'package:kyle_test_app/ui/my_bag/my_bag.dart';
 import 'package:kyle_test_app/ui/product_detail.dart';
 import 'package:kyle_test_app/ui/transition.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    /// Providers are above [MyApp] instead of inside it, so that tests
+    /// can use [MyApp] while mocking the providers
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MyBagProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +35,6 @@ class MyApp extends StatelessWidget {
                 fontSize: 32, color: Colors.black, fontWeight: FontWeight.bold),
             actionsIconTheme: IconThemeData(color: Colors.black)),
       ),
-    
       home: const MyHomePage(),
     );
   }

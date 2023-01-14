@@ -159,12 +159,12 @@ class _ProductSliderState extends State<ProductSlider>
             width: CardConstants.width,
             child: PRODUCTS[index].image != null
                 ? Hero(
-                   tag: PRODUCTS[index].name,
-                  child: Image.asset(
-                      PRODUCTS[index].image!,
+                    tag: PRODUCTS[index].name,
+                    child: Image.asset(
+                      PRODUCTS[index].image,
                       fit: BoxFit.fill,
                     ),
-                )
+                  )
                 : const FlutterLogo(),
           ),
         ),
